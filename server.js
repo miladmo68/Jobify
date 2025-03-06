@@ -5,8 +5,10 @@ import express from "express";
 const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";
-// routers
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import jobRouter from "./routes/jobRouter.js";
+import { body, validationResult } from "express-validator";
+import { validateTest } from "./middleware/validationMiddleware.js";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -19,18 +21,20 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 // CREATE HELLO MESSAGE
-app.post("/", (req, res) => {
-  console.log(req);
-  res.json({ message: "Data received", data: req.body });
-});
+app.post(
+  "/api/v1/test",
+  [body("name").notEmpty().withMessage("name is required")],
+  validateTest,
+  (req, res) => {
+    const { name } = req.body;
+    res.json({ msg: `hello ${name}` });
+  }
+);
 
 app.use("/api/v1/jobs", jobRouter);
 
 // Error Middleware
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).json({ msg: "something went wrong" });
-});
+app.use(errorHandlerMiddleware);
 
 // Database Connection & Server Start   -----------------------------------
 const port = process.env.PORT || 5100;
