@@ -1,7 +1,7 @@
 <h1 align="center">💼 Jobify</h1>
 
 <p align="center">
-  <a href="https://miladmo68.github.io/Jobify/"><b>🔗 Live Demo</b></a> •
+  <a href="#"><b>🔗 Live Demo</b></a> •
   <a href="https://github.com/miladmo68/Jobify"><b>📦 Repository</b></a>
 </p>
 
@@ -9,15 +9,7 @@
   A sleek and responsive job tracking app built with React, Vite, and styled with Tailwind CSS. Designed to help users manage job applications—adding, editing, deleting, and tracking status with ease.
 </p>
 
----
 
-## ​ Screenshot
-
-<p align="center">
-  <img width="1920" height="1080" alt="Jobify App" src="https://github.com/user-attachments/assets/your-image-id.png" />
-</p>
-
----
 
 ## ​ Tech Stack
 
